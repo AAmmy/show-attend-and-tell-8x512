@@ -1,5 +1,6 @@
 # 1.download dataset
 # http://cs.stanford.edu/people/karpathy/deepimagesent/
+# the place to put the data is written in coco.py
 
 # 2.train
 THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python evaluate_coco.py
