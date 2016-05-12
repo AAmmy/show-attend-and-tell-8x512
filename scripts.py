@@ -1,5 +1,9 @@
+# 1.download dataset
 # http://cs.stanford.edu/people/karpathy/deepimagesent/
-# make references
+
+# 2.train
+THEANO_FLAGS=mode=FAST_RUN,device=gpu,floatX=float32 python evaluate_coco.py
+# 3.make references
 import json
 import numpy
 cap_file = json.load(open('../../Data/coco/dataset.json', 'rb'))['images']
@@ -14,9 +18,9 @@ ref = numpy.array(ref).transpose()
 for i,r in enumerate(ref):
     print >>open('reference' + str(i), 'w'), '\n'.join(r)
 
-# generate samples
+# 4.generate samples
 THEANO_FLAGS=mode=FAST_RUN,device=cpu,floatX=float32 python generate_caps.py
-# calculate score
+# 5.calculate score
 python metrics.py gensaps.test.txt reference0 reference1 reference2 reference3 reference4
 # BLEU: 0.6887/0.5034/0.3588/0.2547
 # METEOR: 0.2234
